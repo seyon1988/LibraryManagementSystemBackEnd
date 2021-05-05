@@ -47,7 +47,7 @@ public class UserController {
 	@GetMapping("/users/{id}")
 	public ResponseEntity<User> getUserByID(@PathVariable int id){
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exists with id: "+id));
+				.orElseThrow(() -> new ResourceNotFoundException("User not exists with id: "+id));
 		return ResponseEntity.ok(user);
 	}
 	
@@ -55,7 +55,7 @@ public class UserController {
 	@PutMapping("/users/{id}")
 	public ResponseEntity<User> updateUser(@PathVariable int id , @RequestBody User userDetails){
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exists with id: "+id));
+				.orElseThrow(() -> new ResourceNotFoundException("User not exists with id: "+id));
 
 		user.setFirstName(userDetails.getFirstName());
 		user.setLastName(userDetails.getLastName());
@@ -71,10 +71,26 @@ public class UserController {
 	@DeleteMapping("/users/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable int id){
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exists with id: "+id));
+				.orElseThrow(() -> new ResourceNotFoundException("User not exists with id: "+id));
 		userRepository.delete(user);
 		Map<String , Boolean > response = new HashMap<>();
 		response.put("Deleted", Boolean.TRUE);
 		return ResponseEntity.ok(response);
 	}
+	
+
+	
+	//get user by id using rest api
+	@GetMapping("/users/{email}/{password}")
+	public  User getUserByEmailPwd(@PathVariable String email,@PathVariable String password){
+		System.out.println(email+password);
+		List <User> users = userRepository.findAll();
+		for(User user : users) {
+			if(user.getEmailID().equals(email) && user.getPassword().equals(password)) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
 }
