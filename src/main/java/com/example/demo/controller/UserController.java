@@ -62,7 +62,8 @@ public class UserController {
 		user.setRole(userDetails.getRole());
 		user.setEmailID(userDetails.getEmailID());
 		user.setPassword(userDetails.getPassword());
-		
+		user.setBookQuota(userDetails.getBookQuota());
+		user.setUtilizedQuota(userDetails.getUtilizedQuota());
 		User updatedUser = userRepository.save(user);
 		return ResponseEntity.ok(updatedUser);
 	}

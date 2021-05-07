@@ -36,10 +36,14 @@ public class User {
 	private String password;
 	
 
+	@Column(name = "book_quota")
+	private int bookQuota;
 	
 	
-	
-	
+
+
+	@Column(name = "utilized_quota")
+	private int utilizedQuota;
 	
 
 
@@ -50,17 +54,17 @@ public class User {
 
 
 
-	public User(String firstName, String lastName, String role, String emailID, String password) {
+	public User(String firstName, String lastName, String role, String emailID, String password, int bookQuota,
+			int utilizedQuota) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
 		this.emailID = emailID;
 		this.password = password;
+		this.bookQuota = bookQuota;
+		this.utilizedQuota = utilizedQuota;
 	}
-
-
-
 
 
 
@@ -107,6 +111,30 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	
+	public int getBookQuota() {
+		return bookQuota;
+	}
+
+
+
+	public void setBookQuota(int bookQuota) {
+		this.bookQuota = bookQuota;
+	}
+
+
+
+	public int getUtilizedQuota() {
+		return utilizedQuota;
+	}
+
+
+
+	public void setUtilizedQuota(int utilizedQuota) {
+		this.utilizedQuota = utilizedQuota;
+	}
+
 
 	
 }
