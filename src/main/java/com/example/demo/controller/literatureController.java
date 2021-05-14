@@ -3,13 +3,9 @@ package com.example.demo.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
-import javax.persistence.Embeddable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,11 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Literature;
-import com.example.demo.model.User;
 import com.example.demo.repository.LiteratureRepository;
-import com.example.demo.repository.UserRepository;
-
-import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -61,7 +53,7 @@ public class literatureController {
 	public ResponseEntity<Literature> updateLiterature(@PathVariable int id , @RequestBody Literature literatureDetails){
 		Literature literature = literatureRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Literature not exists with id: "+id));
-		
+		System.out.println("Here");
 		literature.setAuthor(literatureDetails.getAuthor());
 		literature.setCategory(literatureDetails.getCategory());
 		literature.setIsbn(literatureDetails.getIsbn());

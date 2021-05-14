@@ -3,13 +3,8 @@ package com.example.demo.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
-
-import javax.persistence.Embeddable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
-
-import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -81,7 +74,7 @@ public class UserController {
 	
 
 	
-	//get user by id using rest api
+	//get user by email and password using rest api
 	@GetMapping("/users/{email}/{password}")
 	public  User getUserByEmailPwd(@PathVariable String email,@PathVariable String password){
 		System.out.println(email+password);
